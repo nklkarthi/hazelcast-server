@@ -21,14 +21,14 @@ package com.obergner.hzserver;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.hazelcast.core.Hazelcast;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.SmartLifecycle;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.impl.FactoryImpl;
-import com.hazelcast.impl.FactoryImpl.HazelcastInstanceProxy;
+import com.hazelcast.instance.HazelcastInstanceProxy;
 import com.yammer.metrics.core.Gauge;
 import com.yammer.metrics.core.MetricsRegistry;
 
@@ -51,7 +51,7 @@ public class HazelcastService implements SmartLifecycle {
 
 	private final MetricsRegistry	        metricsRegistry;
 
-	private volatile HazelcastInstanceProxy	hazelcastInstance;
+	private volatile HazelcastInstance	hazelcastInstance;
 
 	/**
 	 * @param configuration
@@ -74,8 +74,7 @@ public class HazelcastService implements SmartLifecycle {
 		this.log.info("Starting {} using ...", this.configuration);
 
 		final long start = System.currentTimeMillis();
-		this.hazelcastInstance = FactoryImpl
-		        .newHazelcastInstanceProxy(this.configuration);
+		this.hazelcastInstance = Hazelcast.newHazelcastInstance(this.configuration);
 		final long startupDuration = System.currentTimeMillis() - start;
 		this.metricsRegistry.newGauge(getClass(), STARTUP_DURATION_GAUGE,
 		        new Gauge<Long>() {
@@ -99,7 +98,7 @@ public class HazelcastService implements SmartLifecycle {
 		        this.hazelcastInstance);
 
 		this.metricsRegistry.removeMetric(getClass(), STARTUP_DURATION_GAUGE);
-		this.hazelcastInstance.shutdown();
+		this.hazelcastInstance.getLifecycleService().shutdown();
 
 		this.log.info("{} shut down", this.hazelcastInstance);
 

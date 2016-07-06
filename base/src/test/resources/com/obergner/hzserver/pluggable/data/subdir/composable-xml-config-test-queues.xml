@@ -20,14 +20,14 @@
 
 -->
 <hazelcast
-    xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-2.4.xsd"
+    xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.7.xsd"
     xmlns="http://www.hazelcast.com/schema/config"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <queue
         name="tasks">
-        <max-size-per-jvm>10000</max-size-per-jvm>
-        <backing-map-ref>queue-map</backing-map-ref>
+        <max-size>10000</max-size>
+        <backup-count>1</backup-count>
     </queue>
 
     <map

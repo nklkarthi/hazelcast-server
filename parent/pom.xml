@@ -45,9 +45,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- javac settings -->
-        <compiler.source>1.6</compiler.source>
-        <compiler.target>1.6</compiler.target>
-        <compiler.compilerVersion>1.6</compiler.compilerVersion>
+        <compiler.source>1.8</compiler.source>
+        <compiler.target>1.8</compiler.target>
+        <compiler.compilerVersion>1.8</compiler.compilerVersion>
         <compiler.verbose>true</compiler.verbose>
         <compiler.debug>true</compiler.debug>
         <compiler.showWarnings>true</compiler.showWarnings>
@@ -56,37 +56,37 @@
         <!-- Dependency versions -->
         <!-- ######################################################### -->
         <!-- Proprietary -->
-        <dep.slf4j.version>1.7.2</dep.slf4j.version>
-        <dep.logback.version>1.0.9</dep.logback.version>
-        <dep.spring.version>3.2.0.RELEASE</dep.spring.version>
-        <dep.yammer-metrics.version>2.1.2</dep.yammer-metrics.version>
-        <dep.hazelcast.version>2.4.1</dep.hazelcast.version>
+        <dep.slf4j.version>1.7.21</dep.slf4j.version>
+        <dep.logback.version>1.1.7</dep.logback.version>
+        <dep.spring.version>4.3.1.RELEASE</dep.spring.version>
+        <dep.yammer-metrics.version>2.2.0</dep.yammer-metrics.version>
+        <dep.hazelcast.version>3.7-EA</dep.hazelcast.version>
         <dep.jmx2snmp.version>1.0-SNAPSHOT</dep.jmx2snmp.version>
-        <dep.guava.version>13.0.1</dep.guava.version>
+        <dep.guava.version>19.0</dep.guava.version>
         <!-- Testing -->
         <dep.junit.version>4.11</dep.junit.version>
         <!-- ######################################################### -->
         <!-- Build plugin versions -->
         <!-- ######################################################### -->
-        <plugins.compiler.version>3.0</plugins.compiler.version>
-        <plugins.clean.version>2.5</plugins.clean.version>
-        <plugins.deploy.version>2.7</plugins.deploy.version>
-        <plugins.install.version>2.4</plugins.install.version>
-        <plugins.resources.version>2.6</plugins.resources.version>
-        <plugins.surefire.version>2.12.4</plugins.surefire.version>
-        <plugins.build-helper.version>1.7</plugins.build-helper.version>
-        <plugins.jar.version>2.4</plugins.jar.version>
-        <plugins.plugin.version>3.1</plugins.plugin.version>
-        <plugins.source.version>2.2.1</plugins.source.version>
+        <plugins.compiler.version>3.5.1</plugins.compiler.version>
+        <plugins.clean.version>3.0.0</plugins.clean.version>
+        <plugins.deploy.version>2.8.2</plugins.deploy.version>
+        <plugins.install.version>2.5.2</plugins.install.version>
+        <plugins.resources.version>3.0.1</plugins.resources.version>
+        <plugins.surefire.version>2.19.1</plugins.surefire.version>
+        <plugins.build-helper.version>1.9.1</plugins.build-helper.version>
+        <plugins.jar.version>3.0.2</plugins.jar.version>
+        <plugins.plugin.version>3.4</plugins.plugin.version>
+        <plugins.source.version>3.0.1</plugins.source.version>
         <!-- Use 2.5 instead of 2.5.1 because of http://jira.codehaus.org/browse/MCOBERTURA-151 -->
-        <plugins.cobertura.version>2.5</plugins.cobertura.version>
-        <plugins.rpm.version>2.1-alpha-2</plugins.rpm.version>
-        <plugins.buildnumber.version>1.0</plugins.buildnumber.version>
+        <plugins.cobertura.version>2.7</plugins.cobertura.version>
+        <plugins.rpm.version>2.1.5</plugins.rpm.version>
+        <plugins.buildnumber.version>1.4</plugins.buildnumber.version>
         <plugins.license.version>1.9.0</plugins.license.version>
         <!-- ######################################################### -->
         <!-- Reporting plugin versions -->
         <!-- ######################################################### -->
-        <plugins.site.version>3.1</plugins.site.version>
+        <plugins.site.version>3.5.1</plugins.site.version>
         <plugins.javadoc.version>2.9</plugins.javadoc.version>
         <plugins.surefire-reports.version>2.12.4</plugins.surefire-reports.version>
         <plugins.pmd.version>2.7.1</plugins.pmd.version>
@@ -437,13 +437,13 @@
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             </manifest>
                             <manifestEntries>
-                                <Implementation-MajorVersion>${parsedVersion.majorVersion}</Implementation-MajorVersion>
-                                <Implementation-MinorVersion>${parsedVersion.minorVersion}</Implementation-MinorVersion>
-                                <Implementation-IncrementalVersion>${parsedVersion.incrementalVersion}</Implementation-IncrementalVersion>
-                                <Implementation-Qualifier>${parsedVersion.qualifier}</Implementation-Qualifier>
-                                <Implementation-BuildNumber>${buildTimestamp}</Implementation-BuildNumber>
-                                <Implementation-Branch>${scmBranch}</Implementation-Branch>
-                                <Implementation-Revision>${buildNumber}</Implementation-Revision>
+                                <Implementation-MajorVersion>$\{parsedVersion.majorVersion}</Implementation-MajorVersion>
+                                <Implementation-MinorVersion>$\{parsedVersion.minorVersion}</Implementation-MinorVersion>
+                                <Implementation-IncrementalVersion>$\{parsedVersion.incrementalVersion}</Implementation-IncrementalVersion>
+                                <Implementation-Qualifier>$\{parsedVersion.qualifier}</Implementation-Qualifier>
+                                <Implementation-BuildNumber>$\{buildTimestamp}</Implementation-BuildNumber>
+                                <Implementation-Branch>$\{scmBranch}</Implementation-Branch>
+                                <Implementation-Revision>$\{buildNumber}</Implementation-Revision>
                             </manifestEntries>
                         </archive>
                     </configuration>

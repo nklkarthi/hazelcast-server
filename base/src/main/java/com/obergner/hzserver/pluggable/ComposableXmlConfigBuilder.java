@@ -32,7 +32,13 @@ import org.w3c.dom.Document;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.XmlConfigBuilder;
-import com.hazelcast.impl.Util;
+
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 /**
  * <p>
@@ -73,11 +79,10 @@ public class ComposableXmlConfigBuilder {
 		try {
 			this.log.info("Building Hazelcast configuration ...");
 			final Document configDoc = this.configParser.parse();
-			final Config config = new XmlConfigBuilder(
-			        new ByteArrayInputStream("IGNORED".getBytes()))
-			        .build(configDoc.getDocumentElement());
 
-			injectXmlConfigIntoConfig(config, configDoc);
+			InputStream inputStream = getInputStream(configDoc);
+
+			final Config config = new XmlConfigBuilder(inputStream).build();
 
 			this.log.info("Hazelcast configuration successfully built: {}",
 			        config);
@@ -89,12 +94,11 @@ public class ComposableXmlConfigBuilder {
 		}
 	}
 
-	private void injectXmlConfigIntoConfig(final Config config,
-	        final Document configDoc) throws IOException {
-		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		Util.streamXML(configDoc, baos);
-		final byte[] bytes = baos.toByteArray();
-		final ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-		config.setXmlConfig(Util.inputStreamToString(bais));
+	private InputStream getInputStream(Document configDoc) throws TransformerException {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		Source xmlSource = new DOMSource(configDoc);
+		Result outputTarget = new StreamResult(outputStream);
+		TransformerFactory.newInstance().newTransformer().transform(xmlSource, outputTarget);
+		return new ByteArrayInputStream(outputStream.toByteArray());
 	}
 }

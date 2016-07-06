@@ -20,7 +20,7 @@
 
 -->
 <hazelcast
-    xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-2.4.xsd"
+    xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.7.xsd"
     xmlns="http://www.hazelcast.com/schema/config"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
@@ -31,7 +31,7 @@
         <max-idle-seconds>0</max-idle-seconds>
         <eviction-policy>NONE</eviction-policy>
         <max-size
-            policy="cluster_wide_map_size">0</max-size>
+            policy="PER_NODE">0</max-size>
         <eviction-percentage>25</eviction-percentage>
         <merge-policy>hz.ADD_NEW_ENTRY</merge-policy>
 
@@ -53,7 +53,7 @@
         <max-idle-seconds>0</max-idle-seconds>
         <eviction-policy>NONE</eviction-policy>
         <max-size
-            policy="cluster_wide_map_size">0</max-size>
+            policy="PER_NODE">0</max-size>
         <eviction-percentage>25</eviction-percentage>
         <merge-policy>hz.ADD_NEW_ENTRY</merge-policy>
 

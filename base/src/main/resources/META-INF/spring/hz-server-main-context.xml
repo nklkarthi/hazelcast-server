@@ -47,7 +47,7 @@
         server="com.obergner.hzserver.mbeanServer"
         default-domain="com.obergner.hzserver" />
     <context:property-placeholder
-        location="classpath:hazelcast-server.properties" />
+        location="classpath:hazelcast-server.xml" />
     <!-- END-SNIPPET: general settings -->
 
     <!-- START-SNIPPET: metrics support -->

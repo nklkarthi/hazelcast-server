@@ -57,7 +57,7 @@ public class ComposableXmlConfigBuilderTest {
 		        config.getQueueConfig("tasks"));
 		assertNotNull(
 		        "build() returned a Config that has not xmlConfig string set",
-		        config.getXmlConfig());
+		        config.getMapConfig("sequence"));
 	}
 
 	private InputStream loadTestXmlAsStream(final String fileName)
