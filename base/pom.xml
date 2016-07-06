@@ -228,11 +228,11 @@
                                 <configuration>
                                     <group>Network/Servers</group>
                                     <name>hazelcast-server-base</name>
-                                    <copyright>2012, Olaf Bergner</copyright>
+                                    <license>2012, Olaf Bergner</license>
                                     <packager>Olaf Bergner</packager>
                                     <targetVendor>CentOS</targetVendor>
                                     <needarch>${rpm.arch}</needarch>
-                                    <release>${buildTimestamp}.${rpm.dist}</release>
+                                    <release>${maven.build.timestamp}.${rpm.dist}</release>
                                     <distribution>${rpm.dist}</distribution>
                                     <defaultDirmode>755</defaultDirmode>
                                     <defaultFilemode>644</defaultFilemode>
